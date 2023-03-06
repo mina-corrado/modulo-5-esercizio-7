@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { BookList } from './BookList';
 import { MyBadge } from './MyBadge';
@@ -6,20 +6,22 @@ import { MyNavbar } from './MyNavbar';
 import scifiBooks from './scifi.json';
 import { SingleBook } from './SingleBook';
 
-class App extends React.Component {
+const App = () => {
 
-  constructor(props){
-    super(props)
-    this.state = {
-      query: ''
-    };
-  }
-  cambiaQuery = (newQuery) => {
+  // constructor(props){
+  //   super(props)
+  //   this.state = {
+  //     query: ''
+  //   };
+  // }
+  const [query, setQuery] = useState('');
+
+  const cambiaQuery = (newQuery) => {
     console.log("app ", newQuery);
-    this.setState({query: newQuery});
+    setQuery(newQuery);
   }
-  render () {
-    const query = this.state.query;
+  // render () {
+    // const query = this.state.query;
     return (
     <div className="App">
       {/* <header className="App-header">
@@ -36,14 +38,14 @@ class App extends React.Component {
           Learn React
         </a>
       </header> */}
-      <MyNavbar query={query} cambiaQuery={this.cambiaQuery}></MyNavbar>
+      <MyNavbar query={query} cambiaQuery={cambiaQuery}></MyNavbar>
       <MyBadge text="Testo Badge" color="primary"></MyBadge>
       <SingleBook book={scifiBooks[0]}></SingleBook>
       <BookList books={scifiBooks} query={query}></BookList>
     </div>
 
     )
-  }
+  // }
 }
 
 export default App;
